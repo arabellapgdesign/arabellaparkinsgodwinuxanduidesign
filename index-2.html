@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arabella Parkins-Godwin — UX/UI Portfolio</title>
+<meta name="description" content="UX/UI portfolio — coursework case study.">
+<style>
+
+  :root{
+    --black: #000000;
+    --white: #ffffff;
+    --line: #000000;
+    --gray: #6b6b6b;
+    --unit: 8px;
+    --max: 1040px;
+  }
+
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--white);
+    color: var(--black);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ transition: none !important; }
+  }
+
+  img{ max-width: 100%; display: block; }
+
+  .wrap{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 calc(var(--unit) * 4);
+  }
+
+  /* ---------- Navigation ---------- */
+  .site-nav{
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    border-bottom: 2px solid var(--line);
+    z-index: 10;
+  }
+  .nav-inner{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: calc(var(--unit) * 3) calc(var(--unit) * 4);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--unit);
+  }
+  .nav-name{
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--black);
+    letter-spacing: 0.01em;
+  }
+  .nav-links{
+    display: flex;
+    list-style: none;
+    gap: calc(var(--unit) * 4);
+  }
+  .nav-links a{
+    text-decoration: none;
+    color: var(--black);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.15s ease;
+  }
+  .nav-links a:hover,
+  .nav-links a:focus-visible{
+    border-color: var(--black);
+  }
+
+  :focus-visible{
+    outline: 2px solid var(--black);
+    outline-offset: 3px;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{
+    padding: calc(var(--unit) * 10) 0;
+    border-bottom: 2px solid var(--line);
+  }
+  section:last-of-type{ border-bottom: none; }
+
+  .label{
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: calc(var(--unit) * 2);
+  }
+
+  h1, h2, h3{
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  h1{ font-size: clamp(2rem, 5vw, 3rem); margin-bottom: calc(var(--unit) * 2); }
+  h2{ font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: calc(var(--unit) * 3); }
+  h3{ font-size: 1.1rem; margin-bottom: var(--unit); }
+
+  p{ max-width: 62ch; }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display: inline-block;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: var(--black);
+    color: var(--white);
+    border: 2px solid var(--black);
+    padding: 14px 28px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .btn:hover,
+  .btn:focus-visible{
+    background: var(--white);
+    color: var(--black);
+  }
+  .btn-outline{
+    background: var(--white);
+    color: var(--black);
+  }
+  .btn-outline:hover,
+  .btn-outline:focus-visible{
+    background: var(--black);
+    color: var(--white);
+  }
+
+  /* ---------- Homepage hero ---------- */
+  #home{
+    padding-top: calc(var(--unit) * 14);
+    padding-bottom: calc(var(--unit) * 12);
+  }
+  .hero-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(var(--unit) * 6);
+    align-items: end;
+  }
+  .hero-sub{
+    color: var(--gray);
+    font-size: 1rem;
+    margin-bottom: calc(var(--unit) * 4);
+  }
+  @media (max-width: 700px){
+    .hero-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Case study header ---------- */
+  .cs-title{ padding-top: calc(var(--unit) * 12); }
+  .cs-meta{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: calc(var(--unit) * 4);
+    margin-top: calc(var(--unit) * 6);
+    padding-top: calc(var(--unit) * 4);
+    border-top: 2px solid var(--line);
+  }
+  @media (max-width: 640px){
+    .cs-meta{ grid-template-columns: 1fr; }
+  }
+  .cs-meta dt{
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray);
+    margin-bottom: 4px;
+  }
+  .cs-meta dd{ font-size: 0.95rem; }
+
+  /* ---------- Case study stages ---------- */
+  .stage-grid{
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: calc(var(--unit) * 5);
+  }
+  @media (max-width: 640px){
+    .stage-grid{ grid-template-columns: 1fr; }
+  }
+  .stage-num{
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  /* ---------- Media blocks (wireframe / UI images) ---------- */
+  .media-block{
+    margin-top: calc(var(--unit) * 4);
+    border: 2px solid var(--black);
+  }
+  .media-block img{
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .media-block figcaption{
+    border-top: 2px solid var(--black);
+    padding: calc(var(--unit) * 1.5) calc(var(--unit) * 2);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray);
+  }
+
+  /* ---------- Back to home ---------- */
+  .back-row{
+    padding: calc(var(--unit) * 8) 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding: calc(var(--unit) * 5) 0;
+    text-align: center;
+  }
+  footer p{
+    max-width: none;
+    font-size: 0.8rem;
+    color: var(--gray);
+  }
+
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="#home">Arabella Parkins-Godwin</a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#case-study">Case Study</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HOME ================= -->
+<section id="home" aria-label="Home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="label">UX / UI Design — Coursework</p>
+        <h1>UX/UI Portfolio</h1>
+        <p class="hero-sub">Selected work from UX design coursework</p>
+        <a class="btn" href="#case-study">View Case Study</a>
+      </div>
+      <div>
+        <p>This site presents a single case study produced as part of a UX design course. Content is for academic submission and demonstration purposes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CASE STUDY ================= -->
+<section id="case-study" aria-label="Case study">
+  <div class="wrap cs-title">
+    <p class="label">Case Study</p>
+    <h2>Haven App – Registration Form Design</h2>
+
+    <dl class="cs-meta">
+      <div>
+        <dt>Project Type</dt>
+        <dd>Coursework</dd>
+      </div>
+      <div>
+        <dt>Focus Area</dt>
+        <dd>Form usability &amp; accessibility</dd>
+      </div>
+      <div>
+        <dt>Deliverables</dt>
+        <dd>Wireframes, UI screens</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section aria-label="Problem">
+  <div class="wrap">
+    <div class="stage-grid">
+      <p class="stage-num">01 — Problem</p>
+      <div>
+        <h3>Problem</h3>
+        <p>Users need a clear and accessible registration form that reduces errors and builds trust.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Process">
+  <div class="wrap">
+    <div class="stage-grid">
+      <p class="stage-num">02 — Process</p>
+      <div>
+        <h3>Process</h3>
+        <p>Designed input fields, validation states, and error messaging focusing on usability and accessibility.</p>
+
+        <figure class="media-block">
+          <img src="wireframe.png" alt="Wireframe of the Haven landing page, showing desktop and mobile layouts with hero section, feature columns, call-to-action, and footer" loading="lazy">
+          <figcaption>Wireframe — desktop and mobile layout</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Solution">
+  <div class="wrap">
+    <div class="stage-grid">
+      <p class="stage-num">03 — Solution</p>
+      <div>
+        <h3>Solution</h3>
+        <p>Created a clean, mobile-first form with clear labels, inline validation, and visual feedback.</p>
+
+        <figure class="media-block">
+          <img src="final-ui.png" alt="Three final UI screens of the Haven app registration form, showing an empty state, an invalid state with inline error messages, and a valid state with success indicators" loading="lazy">
+          <figcaption>Final UI — registration form states</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap back-row">
+  <a class="btn btn-outline" href="#home">Back to Home</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Coursework submission — UX/UI Portfolio</p>
+  </div>
+</footer>
+
+</body>
+</html>
